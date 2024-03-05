@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>cookery</title>
+    <link rel="stylesheet" href="style.css"/>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <section class="container">
+        <header> CUSTOMER REGISTRATION </header>
+        <form id="registrationForm" class="form">
+            <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" name="full-name" placeholder="Enter full name" required/>
+            </div>
+            <div class="input-box">
+                <label>Email Address</label>
+                <input type="text" name="email" placeholder="Enter email address" required/>
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone-number" placeholder="Enter phone number" required/>
+                </div>
+                <div class="input-box">
+                    <label>Birth Date</label>
+                    <input type="date" name="birth-date" placeholder="Enter birth date" required/>
+                </div>
+            </div>
+            <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" id="check-male" name="gender" checked>
+                        <label for="check-male">Male</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="check-female" name="gender">
+                        <label for="check-female">Female</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="check-other" name="gender">
+                        <label for="check-other">Prefer not to say</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box address">
+                <label>Address</label>
+                <input type="text" name="street-address" placeholder="Enter street address" required/>
+                <input type="text" name="street-address-line2" placeholder="Enter street address line2" required/>
+                <div class="column">
+                    <div class="select-box">
+                        <select name="country">
+                            <option>Country</option>
+                            <option>Africa</option>
+                            <option>India</option>
+                            <option>America</option>
+                            <option>Nepal</option>
+                        </select>
+                    </div>
+                    <input type="text" name="city" placeholder="Enter your city" required/>
+                </div>
+                <input type="text" name="region" placeholder="Enter your region" required/>
+                <input type="number" name="postal-code" placeholder="Enter postal code" required/>
+            </div>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            var formHandler = {
+                formElement: $('#registrationForm'),
+
+                validateAndSubmit: function () {
+                    var fullName = this.formElement.find('input[name="full-name"]').val();
+                    var email = this.formElement.find('input[name="email"]').val();
+                    var phoneNumber = this.formElement.find('input[name="phone-number"]').val();
+
+                    if (fullName.trim() === '') {
+                        alert('Please enter your full name.');
+                        return false;
+                    }
+
+                    // Add validations for other fields...
+
+                    alert('Form submitted successfully!');
+                    // You can replace this with actual form submission logic
+                    return true;
+                },
+
+                resetForm: function () {
+                    this.formElement[0].reset();
+                }
+            };
+
+            // Event listeners using jQuery
+            $('#registrationForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                formHandler.validateAndSubmit();
+            });
+
+            $('#registrationForm button[type="reset"]').on('dblclick', function() {
+                console.log('Double-clicked Reset button');
+                formHandler.resetForm();
+            });
+
+            // Other event listeners can be added similarly
+        });
+    </script>
+</body>
+</html>
